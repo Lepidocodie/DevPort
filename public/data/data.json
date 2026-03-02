@@ -1,0 +1,181 @@
+{
+  "project": [
+    {
+      "id": "P01",
+      "name": "SALTY - E-commerce Website",
+      "description": "My 1st project is an e-commerce website called SALTY, Designed and developed a fully responsive e-commerce frontend website using pure HTML, CSS, and Vanilla JavaScript. The project simulates a complete online shopping experience without relying on external frontend frameworks.",
+      "features": [
+        "Dynamic Product Rendering: Implemented a custom routing system using URL parameters (URLSearchParams) to handle product search, category filtering, and detailed product views dynamically from a JSON data structure.",
+        "State Management: Developed a persistent Shopping Cart system using the browser's localStorage to handle adding/removing items and updating quantities across different sessions.",
+        "Interactive UI/UX: Built a custom JavaScript Carousel class, simulated payment processing modals, and added micro-interactions (e.g., \"flying to cart\" animation) to enhance user engagement.",
+        "Responsive Design: Utilized CSS Grid and Flexbox with a mobile-first approach, ensuring seamless rendering across desktop, tablet, and mobile devices.",
+        "Performance OptimizationModern CSS: Implemented CSS Variables (:root) for consistent theming and maintainability."
+      ],
+      "role": "Frontend Developer",
+      "year": "Oct 2025 - Dec 2025",
+      "cover": "my-portfolio/data/image/salty/salty1.webp",
+      "tag": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "image": [
+        "my-portfolio/data/image/salty/salty1.webp",
+        "my-portfolio/data/image/salty/salty2.webp",
+        "my-portfolio/data/image/salty/salty3.webp",
+        "my-portfolio/data/image/salty/salty4.webp"
+      ],
+      "link": "https://bonchon2023.github.io/",
+      "github": "https://github.com/Bonchon2023/Bonchon2023.gitHub.io"
+    },
+    {
+      "id": "P02",
+      "name": "SkillFrameX - Online Learning Platform",
+      "description": "SkillFrameX is a modern online learning platform developed with Next.js (App Router) and TypeScript. The project focuses on providing a seamless user experience for browsing courses, reading blogs, and tracking learning progress. It features a responsive design and efficient state management to handle dynamic content.",
+      "features": [
+        "Dynamic Course Filtering & Search: Implemented a robust filtering system using `useSearchParams` to handle search queries and category selection, allowing users to filter courses by name, description, or category with shareable URLs.",
+        "Interactive Hero Slider: Built a custom carousel component with auto-sliding capabilities, manual navigation controls, and smooth CSS transitions to highlight featured courses.",
+        "Learning Progress Tracking: Integrated a custom hook (`useProgress`) to manage user enrollments and calculate real-time course completion percentages based on finished lessons.",
+        "Responsive Navigation: Designed a sticky navigation bar with a glassmorphism effect, featuring a real-time search input and a mobile-responsive menu that adapts to different screen sizes.",
+        "Asynchronous Data Loading: Utilized `Promise.all` to fetch course and category data concurrently, optimizing the initial page load performance."
+      ],
+      "role": "Frontend Developer",
+      "year": "Jan 2026 - Feb 2026",
+      "cover": "my-portfolio/data/image/skillframex/skillframex1.webp",
+      "tag": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "React"
+      ],
+      "image": [
+        "my-portfolio/data/image/skillframex/skillframex1.webp",
+        "my-portfolio/data/image/skillframex/skillframex2.webp",
+        "my-portfolio/data/image/skillframex/skillframex3.webp",
+        "my-portfolio/data/image/skillframex/skillframex4.webp",
+        "my-portfolio/data/image/skillframex/skillframex5.webp",
+        "my-portfolio/data/image/skillframex/skillframex6.webp"
+      ],
+      "link": "https://skill-frame-x-git-hub-io.vercel.app",
+      "github": "https://github.com/Bonchon2023/SkillFrameX.gitHub.io"
+    },
+    {
+      "id": "P03",
+      "name": "DevPortfolio - Personal Developer Portfolio",
+      "description": "A modern, highly responsive personal developer portfolio built to showcase professional projects, skills, and experience. Engineered with the latest web technologies including Next.js 16, React 19, and Tailwind CSS v4, offering a seamless user experience, optimal performance, and clean UI design.",
+      "features": [
+        "Modern Tech Stack: Developed using Next.js 16 (App Router) and React 19, ensuring high performance, excellent SEO, and a scalable component-based architecture.",
+        "Responsive UI/UX & Styling: Crafted a sleek, mobile-first interface utilizing Tailwind CSS v4 alongside `tailwind-merge` and `clsx` for dynamic and maintainable utility class management.",
+        "Accessible Components & Iconography: Integrated `@radix-ui/react-slot` for building highly accessible, customizable UI components, paired with `lucide-react` for consistent and lightweight SVG icons.",
+        "Data-Driven Rendering: Engineered a dynamic content rendering system that fetches project details, skills, and galleries from a local JSON structure, allowing for effortless portfolio updates.",
+        "Type Safety & Optimization: Fully typed with TypeScript to ensure code reliability and maintainability, while utilizing `next/font` for automatic font optimization (Geist font family)."
+      ],
+      "role": "Frontend Developer",
+      "year": "Feb 2026",
+      "cover": "my-portfolio/data/image/devport2/devport2_1.webp",
+      "tag": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "image": [
+        "my-portfolio/data/image/devport2/devport2_1.webp",
+        "my-portfolio/data/image/devport2/devport2_2.webp",
+        "my-portfolio/data/image/devport2/devport2_3.webp",
+        "my-portfolio/data/image/devport2/devport2_4.webp",
+        "my-portfolio/data/image/devport2/devport2_5.webp"
+      ],
+      "link": "https://dev-portfolio-smoky-ten.vercel.app/",
+      "github": "https://github.com/Bonchon2023/DevPortfolio"
+    },
+    {
+      "id": "PO4",
+      "name": "SALTY v2 - E-commerce (Under development)",
+      "description": "An experimental rebuild of my very first project, SALTY. This version migrates the original pure HTML, CSS, and Vanilla JavaScript codebase into a modern, component-based architecture using Vue 3 and Nuxt.js. It features minor UI/UX design refinements while maintaining the core e-commerce functionality.",
+      "features": [
+        "Framework Migration: Successfully refactored a vanilla web project into a robust, scalable application using Vue 3 and Nuxt.js, taking advantage of modern frontend tooling.",
+        "Composable State Management: Implemented custom Vue Composables (`useCart`, `useProducts`) to efficiently handle global state, such as shopping cart logic and dynamic product data.",
+        "Modern Routing & Layouts: Leveraged Nuxt's intuitive file-based routing system (`pages/`) and reusable layouts (`layouts/default.vue`) to create a seamless Single Page Application (SPA) experience.",
+        "Type Safety: Integrated TypeScript to ensure code reliability, better maintainability, and improved developer experience across components and logic.",
+        "UI/UX Refinements: Enhanced the original design with improved CSS structuring, responsive components, and smoother user interactions."
+      ],
+      "role": "Frontend Developer",
+      "year": "Dec 2025 - Recent",
+      "cover": "my-portfolio/data/image/saltyv2/sv2_1.webp",
+      "tag": [
+        "Nuxt.js",
+        "Vue.js",
+        "TypeScript",
+        "CSS"
+      ],
+      "image": [
+        "my-portfolio/data/image/saltyv2/sv2_1.webp",
+        "my-portfolio/data/image/saltyv2/sv2_2.webp",
+        "my-portfolio/data/image/saltyv2/sv2_3.webp",
+        "my-portfolio/data/image/saltyv2/sv2_4.webp",
+        "my-portfolio/data/image/saltyv2/sv2_5.webp",
+        "my-portfolio/data/image/saltyv2/sv2_6.webp"
+      ],
+      "link": "https://salty-webapp.vercel.app/",
+      "github": "https://github.com/Bonchon2023/salty-webapp"
+    }
+  ],
+  "miniproject": [
+    {
+      "id": "M01",
+      "name": "Drinking Water Calculator",
+      "description": "A lightweight, interactive web application built with React, Vite, and TypeScript that calculates a user's recommended daily water intake based on their body weight. The application provides real-time calculations and dynamically formats the output for a seamless user experience.",
+      "features": [
+        "Real-time Calculation: Implemented dynamic state management using React's `useState` hook to instantly calculate and update the recommended water intake as the user inputs their weight.",
+        "Data Formatting: Utilized JavaScript's `toLocaleString` and `toFixed` methods to cleanly format the calculated results into easily readable metrics (milliliters and liters).",
+        "Modern Build Tooling: Developed using Vite for an ultra-fast Hot Module Replacement (HMR) development experience and highly optimized production builds.",
+        "Type Safety & Code Quality: Leveraged TypeScript for strict type checking and integrated ESLint for robust code maintainability and error prevention."
+      ],
+      "role": "Frontend Developer",
+      "year": "Feb 2026",
+      "cover": "my-portfolio/data/image/drinkwater/drinkwater1.webp",
+      "tag": [
+        "React",
+        "TypeScript",
+        "Vite"
+      ],
+      "image": [
+        "my-portfolio/data/image/drinkwater/drinkwater1.webp",
+        "my-portfolio/data/image/drinkwater/drinkwater2.webp"
+      ],
+      "link": "https://drinking-water-calculator.vercel.app/",
+      "github": "https://github.com/Bonchon2023/drinking-water-calculator"
+    },
+    {
+      "id": "M02",
+      "name": "WeatherDash - Interactive Weather Dashboard",
+      "description": "A comprehensive weather dashboard application built with Nuxt 3 and Tailwind CSS. It provides real-time weather updates, detailed hourly and daily forecasts, and features an interactive map to visualize precipitation, clouds, and temperature layers.",
+      "features": [
+        "Real-Time Weather Data: Integrated OpenWeatherMap API to fetch and display accurate current weather conditions, including temperature, humidity, wind speed, and UV index.",
+        "Interactive Weather Maps: Implemented Leaflet.js to render dynamic, interactive maps with toggleable layers for rain, clouds, temperature, and wind speed.",
+        "Dynamic Location Search: Built a custom search functionality leveraging OpenWeatherMap's Geocoding API to easily find and switch between different cities globally.",
+        "Server-Side API Proxy: Utilized Nuxt 3's Nitro server engine (`/server/api`) to securely proxy external API requests, keeping API keys hidden from the client and preventing CORS issues.",
+        "Responsive UI Components: Designed an intuitive, mobile-first interface using Tailwind CSS, featuring smooth horizontal scroll cards for hourly forecasts and clean list views for daily predictions."
+      ],
+      "role": "Frontend Developer",
+      "year": "Feb 2026",
+      "cover": "my-portfolio/data/image/weatherdash/weatherdash1.webp",
+      "tag": [
+        "Nuxt.js",
+        "Vue",
+        "Tailwind CSS",
+        "TypeScript",
+        "Leaflet"
+      ],
+      "image": [
+        "my-portfolio/data/image/weatherdash/weatherdash1.webp",
+        "my-portfolio/data/image/weatherdash/weatherdash2.webp",
+        "my-portfolio/data/image/weatherdash/weatherdash3.webp",
+        "my-portfolio/data/image/weatherdash/weatherdash4.webp"
+      ],
+      "link": "https://weather-dash-gamma.vercel.app/",
+      "github": "https://github.com/Bonchon2023/weatherdash"
+    }
+  ]
+}
