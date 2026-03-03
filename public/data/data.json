@@ -25,8 +25,8 @@
         "my-portfolio/data/image/salty/salty3.webp",
         "my-portfolio/data/image/salty/salty4.webp"
       ],
-      "link": "https://bonchon2023.github.io/",
-      "github": "https://github.com/Bonchon2023/Bonchon2023.gitHub.io"
+      "link": "https://salty-v-1.vercel.app/",
+      "github": "https://github.com/Lepidocodie/SALTY-V.1"
     },
     {
       "id": "P02",
@@ -57,7 +57,7 @@
         "my-portfolio/data/image/skillframex/skillframex6.webp"
       ],
       "link": "https://skill-frame-x-git-hub-io.vercel.app",
-      "github": "https://github.com/Bonchon2023/SkillFrameX.gitHub.io"
+      "github": "https://github.com/Lepidocodie/SkillFrameX"
     },
     {
       "id": "P03",
@@ -174,8 +174,8 @@
         "my-portfolio/data/image/weatherdash/weatherdash3.webp",
         "my-portfolio/data/image/weatherdash/weatherdash4.webp"
       ],
-      "link": "https://weather-dash-gamma.vercel.app/",
-      "github": "https://github.com/Bonchon2023/weatherdash"
+      "link": "https://weather-dash-zjxc.vercel.app/",
+      "github": "https://github.com/Lepidocodie/WeatherDash"
     }
   ]
 }

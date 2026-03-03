@@ -38,7 +38,7 @@ export default function Home() {
               <Link href="#projects" className="inline-flex items-center justify-center px-8 py-3 border border-primary text-base font-medium rounded-md text-primary hover:bg-primary hover:text-background-dark transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_25px_rgba(74,222,128,0.5)] font-display uppercase tracking-wider">
                 View My Work
               </Link>
-              <a href="https://github.com/Bonchon2023" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-secondary text-base font-medium rounded-md text-secondary hover:bg-secondary hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] font-display uppercase tracking-wider">
+              <a href="https://github.com/Lepidocodie" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 border border-secondary text-base font-medium rounded-md text-secondary hover:bg-secondary hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] font-display uppercase tracking-wider">
                 <i className="bi bi-github mr-2"></i> Github Profile
               </a>
             </div>
