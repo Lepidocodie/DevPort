@@ -21,13 +21,10 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="shrink-0 flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-linear-to-br from-primary to-secondary flex items-center justify-center text-background-dark font-bold font-display text-lg shadow-neon-green">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" className="w-full h-full p-1" fill="white">
-                  <path d="M240-360h96q19 0 32.5-13.5T382-406v-148q0-19-13.5-32.5T336-600h-96v240Zm46-46v-148h50v148h-50Zm149 46h98v-46h-82v-52h52v-46h-52v-50h82v-46h-98q-13 0-21.5 8.5T405-570v180q0 13 8.5 21.5T435-360Zm228.5-9.5Q673-378 676-391l56-209h-48l-43 164-43-164h-48l56 209q3 13 12.5 21.5T641-361q13 0 22.5-8.5ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/>
-                </svg>
-              </div>
-              <span className="font-display font-bold text-xl text-white tracking-wider">DevPortfolio</span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <span className="font-display font-bold text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-400 group-hover:from-primary group-hover:to-secondary transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">
+                Dev<span className="text-primary group-hover:text-white transition-colors duration-500">Portfolio</span>
+              </span>
             </Link>
           </div>
 
