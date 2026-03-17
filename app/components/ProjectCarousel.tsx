@@ -35,9 +35,9 @@ export function ProjectCarousel({ images, projectName }: ProjectCarouselProps) {
         alt={`${projectName} preview ${currentIndex + 1}`}
         fill
         className="object-cover transition-all duration-500"
-        priority={currentIndex === 0} 
+        priority={currentIndex === 0}
       />
-      
+
       {/* จะแสดงปุ่มเลื่อนก็ต่อเมื่อมีรูปมากกว่า 1 รูป */}
       {images.length > 1 && (
         <>
@@ -58,18 +58,17 @@ export function ProjectCarousel({ images, projectName }: ProjectCarouselProps) {
           >
             <ChevronRight size={24} />
           </button>
-          
+
           {/* จุด Navigation ด้านล่าง */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10 bg-background/30 px-3 py-2 rounded-full backdrop-blur-sm">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all shadow-sm ${
-                  index === currentIndex 
+                className={`w-2.5 h-2.5 rounded-full transition-all shadow-sm ${index === currentIndex
                     ? "bg-primary w-5" // ขยายจุดที่กำลังแอคทีฟให้กว้างขึ้น
                     : "bg-primary/40 hover:bg-primary/60"
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
