@@ -37,7 +37,7 @@ Clone the repository to your local machine:
 
 ```bash
 git clone <your-repository-url>
-cd my-portfolio
+cd DevPort
 ```
 
 Install the required dependencies:
