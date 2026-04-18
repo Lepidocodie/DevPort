@@ -30,6 +30,43 @@
     },
     {
       "id": "P02",
+      "name": "Salty V2 - Full-Stack E-commerce Platform",
+      "description": "Salty is a robust, production-grade e-commerce platform deployed on AWS EC2. Built with a Nuxt 3 frontend and Node.js backend, it leverages a dual-database architecture using MySQL for core transactional data and MongoDB for flexible product reviews. The entire system is fully containerized using Docker, secured with SSL via Let's Encrypt, and features an automated CI/CD pipeline for seamless deployments.",
+      "features": [
+        "Full-Stack Architecture: Developed a responsive frontend using Nuxt 3 and a robust RESTful API backend with Node.js to handle seamless user interactions and data flow.",
+        "Dual Database System: Implemented MySQL with Prisma ORM for structured relational data (users, products, orders) and MongoDB for flexible, document-based data (product reviews).",
+        "Containerized Deployment: Utilized Docker and Docker Compose to containerize the frontend, backend, and databases, ensuring consistent environments from development to production.",
+        "Reverse Proxy & Security: Configured Nginx as a reverse proxy to route traffic efficiently between services and implemented Let's Encrypt SSL certificates (HTTPS) for secure connections.",
+        "Automated CI/CD Pipeline: Integrated GitHub Actions to create a continuous deployment pipeline, enabling automatic code pulls, container rebuilds, and deployments directly to AWS EC2."
+      ],
+      "role": "Full-Stack Developer",
+      "year": "Dec 2025 - Apr 2026",
+      "cover": "my-portfolio/data/image/saltyv2/sv2_1.webp",
+      "tag": [
+        "Nuxt 3",
+        "Node.js",
+        "MySQL",
+        "MongoDB",
+        "Docker",
+        "AWS EC2",
+        "Nginx"
+      ],
+      "image": [
+        "my-portfolio/data/image/saltyv2/sv2_1.webp",
+        "my-portfolio/data/image/saltyv2/sv2_2.webp",
+        "my-portfolio/data/image/saltyv2/sv2_3.webp",
+        "my-portfolio/data/image/saltyv2/sv2_4.webp",
+        "my-portfolio/data/image/saltyv2/sv2_5.webp",
+        "my-portfolio/data/image/saltyv2/sv2_6.webp",
+        "my-portfolio/data/image/saltyv2/sv2_7.webp",
+        "my-portfolio/data/image/saltyv2/sv2_8.webp",
+        "my-portfolio/data/image/saltyv2/sv2_9.webp"
+      ],
+      "link": "https://salty-th.shop/",
+      "github": "https://github.com/Lepidocodie/SALTY-FullStack"
+    },
+    {
+      "id": "P03",
       "name": "SkillFrameX - Online Learning Platform",
       "description": "SkillFrameX is a modern online learning platform developed with Next.js (App Router) and TypeScript. The project focuses on providing a seamless user experience for browsing courses, reading blogs, and tracking learning progress. It features a responsive design and efficient state management to handle dynamic content.",
       "features": [
@@ -60,7 +97,7 @@
       "github": "https://github.com/Lepidocodie/SkillFrameX---V2"
     },
     {
-      "id": "P03",
+      "id": "P04",
       "name": "DevPortfolio - Personal Developer Portfolio",
       "description": "A modern, highly responsive personal developer portfolio built to showcase professional projects, skills, and experience. Engineered with the latest web technologies including Next.js 16, React 19, and Tailwind CSS v4, offering a seamless user experience, optimal performance, and clean UI design.",
       "features": [
@@ -87,38 +124,7 @@
         "my-portfolio/data/image/devport2/devport2_5.webp"
       ],
       "link": "https://dev-portfolio-smoky-ten.vercel.app/",
-      "github": "https://github.com/Bonchon2023/DevPortfolio"
-    },
-    {
-      "id": "PO4",
-      "name": "SALTY v2 - E-commerce (Under development)",
-      "description": "An experimental rebuild of my very first project, SALTY. This version migrates the original pure HTML, CSS, and Vanilla JavaScript codebase into a modern, component-based architecture using Vue 3 and Nuxt.js. It features minor UI/UX design refinements while maintaining the core e-commerce functionality.",
-      "features": [
-        "Framework Migration: Successfully refactored a vanilla web project into a robust, scalable application using Vue 3 and Nuxt.js, taking advantage of modern frontend tooling.",
-        "Composable State Management: Implemented custom Vue Composables (`useCart`, `useProducts`) to efficiently handle global state, such as shopping cart logic and dynamic product data.",
-        "Modern Routing & Layouts: Leveraged Nuxt's intuitive file-based routing system (`pages/`) and reusable layouts (`layouts/default.vue`) to create a seamless Single Page Application (SPA) experience.",
-        "Type Safety: Integrated TypeScript to ensure code reliability, better maintainability, and improved developer experience across components and logic.",
-        "UI/UX Refinements: Enhanced the original design with improved CSS structuring, responsive components, and smoother user interactions."
-      ],
-      "role": "Frontend Developer",
-      "year": "Dec 2025 - Recent",
-      "cover": "my-portfolio/data/image/saltyv2/sv2_1.webp",
-      "tag": [
-        "Nuxt.js",
-        "Vue.js",
-        "TypeScript",
-        "CSS"
-      ],
-      "image": [
-        "my-portfolio/data/image/saltyv2/sv2_1.webp",
-        "my-portfolio/data/image/saltyv2/sv2_2.webp",
-        "my-portfolio/data/image/saltyv2/sv2_3.webp",
-        "my-portfolio/data/image/saltyv2/sv2_4.webp",
-        "my-portfolio/data/image/saltyv2/sv2_5.webp",
-        "my-portfolio/data/image/saltyv2/sv2_6.webp"
-      ],
-      "link": "https://salty-webapp.vercel.app/",
-      "github": "https://github.com/Bonchon2023/salty-webapp"
+      "github": "https://github.com/Lepidocodie/DevPort"
     }
   ],
   "miniproject": [
@@ -176,6 +182,335 @@
       ],
       "link": "https://weather-dash-zjxc.vercel.app/",
       "github": "https://github.com/Lepidocodie/WeatherDash"
+    }
+  ],
+  "certificate": [
+    {
+      "id": "C01",
+      "name": "Use APIs to Work with Cloud Storage Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "5edc8d8c-49b9-4a0b-b989-e4f615b01bb4",
+      "description": "Complete the Use APIs to Work with Cloud Storage skill badge to demonstrate skills in the following: how APIs work in Google, and how to use the Cloud Storage API specifically.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c01.webp",
+      "tag": [
+        "Google Cloud",
+        "API Management",
+        "Cloud Storage",
+        "API"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c01.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/5edc8d8c-49b9-4a0b-b989-e4f615b01bb4"
+    },
+    {
+      "id": "C02",
+      "name": "The Basics of Google Cloud Compute Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "d4c9290b-21e6-450c-8145-8a6e9168dbf2",
+      "description": "Complete the The Basics of Google Cloud Compute skill badge to demonstrate skills in the following: how to work with virtual machines (VMs), persistent disks, and web servers using Compute Engine.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c02.webp",
+      "tag": [
+        "Google Cloud",
+        "Compute Engine",
+        "Virtual Machines",
+        "Web Servers",
+        "Persistent Disks"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c02.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/d4c9290b-21e6-450c-8145-8a6e9168dbf2"
+    },
+    {
+      "id": "C03",
+      "name": "Perform Predictive Data Analysis in BigQuery Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "1efca69d-fc42-4d56-94ed-b70437545ce9",
+      "description": "Earn a skill badge by completing the Perform Predictive Data Analysis in BigQuery ML course, where you will gain practical experience on the fundamentals of sports data science using BigQuery, including how to create a soccer dataset in BigQuery by importing CSV and JSON files; harness the power of BigQuery with sophisticated SQL analytical concepts, including using BigQuery ML to train an expected goals model on the soccer event data, and evaluate the impressiveness of World Cup goals.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c03.webp",
+      "tag": [
+        "Google Cloud",
+        "BigQuery",
+        "Data Analysis",
+        "Machine Learning",
+        "SQL",
+        "Data Science",
+        "BigQuery ML"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c03.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/1efca69d-fc42-4d56-94ed-b70437545ce9"
+    },
+    {
+      "id": "C04",
+      "name": "Monitoring in Google Cloud Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "25823d6b-c9d3-4404-aa76-4575563b0d3a",
+      "description": "Complete the Monitoring in Google Cloud skill badge to demonstrate skills in the following: how to use Cloud Monitoring tools.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c04.webp",
+      "tag": [
+        "Google Cloud",
+        "Cloud Monitoring",
+        "Monitoring",
+        "Alerting",
+        "Logging",
+        "Dashboard"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c04.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/25823d6b-c9d3-4404-aa76-4575563b0d3a"
+    },
+    {
+      "id": "C05",
+      "name": "Monitor and Log with Google Cloud Operations Suite Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "dab349d5-0966-410f-a758-a29ae21f9bfb",
+      "description": "Complete the Monitor and Log with Google Cloud Operations Suite skill badge to demonstrate skills in the following: monitoring virtual machines in Compute Engine, utilizing Cloud Monitoring for multi-project oversight, extending monitoring and logging capabilities to Cloud Functions, creating and sending custom application metrics, and configuring Cloud Monitoring alerts based on custom metrics.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c05.webp",
+      "tag": [
+        "Google Cloud",
+        "Compute Engine",
+        "Alerts",
+        "Cloud Functions",
+        "Dashboard",
+        "Logging",
+        "Monitoring"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c05.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/dab349d5-0966-410f-a758-a29ae21f9bfb"
+    },
+    {
+      "id": "C06",
+      "name": "Manage Kubernetes in Google Cloud Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "3499b428-c317-4845-b9e3-2b148a34466f",
+      "description": "Complete the intermediate Manage Kubernetes in Google Cloud skill badge to demonstrate skills in the following: configure and build images to run and debug Docker containers, build Kubernetes Engine clusters, and manage them with kubectl, deploy Kubernetes applications using deployments and continuous delivery techniques.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c06.webp",
+      "tag": [
+        "Google Cloud",
+        "Docker",
+        "Kubernetes",
+        "Kubernetes Engine",
+        "kubectl",
+        "Deployments",
+        "Continuous Delivery"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c06.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/3499b428-c317-4845-b9e3-2b148a34466f"
+    },
+    {
+      "id": "C07",
+      "name": "Implement Multimodal Vector Search with BigQuery",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "218afeaf-91fd-43d3-b61c-a64fb1c1500e",
+      "description": "Complete the intermediate Implement Multimodal Vector Search with BigQuery skill badge to demonstrate skills in the following: using Gemini in BigQuery to generate and debug SQL, conduct sentiment analysis, summarize text and identify keywords, generate embeddings, create a Retrieval Augmented Generation (RAG) pipeline, and implement multimodal vector search.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c07.webp",
+      "tag": [
+        "Google Cloud",
+        "Code Generation",
+        "Generative AI",
+        "Vector Databases",
+        "RAG",
+        "Vector Search"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/co7.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/218afeaf-91fd-43d3-b61c-a64fb1c1500e"
+    },
+    {
+      "id": "C08",
+      "name": "Implement Cloud Security Fundamentals on Google Cloud Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "eed6456a-1a8e-46e8-a204-d12ff67b0287",
+      "description": "Complete the intermediate Implement Cloud Security Fundamentals on Google Cloud skill badge to demonstrate skills in the following: creating and assigning roles with Identity and Access Management (IAM); creating and managing service accounts; enabling private connectivity across virtual private cloud (VPC) networks; restricting application access using Identity-Aware Proxy; managing keys and encrypted data using Cloud Key Management Service (KMS); and creating a private Kubernetes cluster.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c08.webp",
+      "tag": [
+        "Google Cloud",
+        "App Deployment",
+        "Authentication",
+        "Cloud Key Management",
+        "GKE",
+        "Identity And Access Management",
+        "Kubectl",
+        "Kubernetes",
+        "Security",
+        "Service Account",
+        "VPC Peering"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c08.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/eed6456a-1a8e-46e8-a204-d12ff67b0287"
+    },
+    {
+      "id": "C09",
+      "name": "Engineer Data for Predictive Modeling with BigQuery ML Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "4834935a-a55f-4f9d-9027-79af2f766014",
+      "description": "Complete the Engineer Data for Predictive Modeling with BigQuery ML skill badge to demonstrate skills in the following: building data transformation pipelines to BigQuery using Dataprep by Trifacta; using Cloud Storage, Dataflow, and BigQuery to build extract, transform, and load (ETL) workflows; building machine learning models using BigQuery ML; and using Cloud Composer to copy data across multiple locations.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c09.webp",
+      "tag": [
+        "Google Cloud",
+        "BigQuery",
+        "BigQuery ML",
+        "Data Engineering",
+        "Dataflow",
+        "Data Ingestion",
+        "Data Pipelines",
+        "Data Preparation",
+        "ETL",
+        "Machine Learning",
+        "Orchestration"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c09.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/4834935a-a55f-4f9d-9027-79af2f766014"
+    },
+    {
+      "id": "C10",
+      "name": "Develop Serverless Applications on Cloud Run Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "532bca4a-8e6f-4b71-b051-757d9fd155ff",
+      "description": "Complete the Develop Serverless Applications on Cloud Run skill badge to demonstrate skills in the following: integrating Cloud Run with Cloud Storage for data management, architecting resilient asynchronous systems using Cloud Run and Pub/Sub, constructing REST API gateways powered by Cloud Run, and building and deploying services on Cloud Run.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c010.webp",
+      "tag": [
+        "Google Cloud",
+        "Cloud Build",
+        "Cloud Run",
+        "Cloud Storage",
+        "Containers",
+        "Docker",
+        "Firestore",
+        "Microserverice",
+        "Pub/sub",
+        "REST API",
+        "Serverless",
+        "Service Account"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c010.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/532bca4a-8e6f-4b71-b051-757d9fd155ff"
+    },
+    {
+      "id": "C11",
+      "name": "Deploy Kubernetes Applications on Google Cloud Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "a65bb6fd-b581-4263-aaa1-75bb5c3aaa06",
+      "description": "Complete the Deploy Kubernetes Applications on Google Cloud skill badge to demonstrate skills in the following: configuring and building Docker container images, creating and managing Google Kubernetes Engine (GKE) clusters, utilizing kubectl for efficient cluster management, and deploying Kubernetes applications with robust continuous delivery (CD) practices.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c011.webp",
+      "tag": [
+        "Google Cloud",
+        "Artifact Registry",
+        "Container",
+        "Docker",
+        "GKE",
+        "Kubernetes",
+        "kubectl",
+        "Continuous Delivery"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c011.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/a65bb6fd-b581-4263-aaa1-75bb5c3aaa06"
+    },
+    {
+      "id": "C12",
+      "name": "Create ML Models with BigQuery ML Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "2ff7faae-a0be-46b9-bbd5-4bb4604f26fa",
+      "description": "Complete the Create ML Models with BigQuery ML skill badge to demonstrate skills in the following: creating and evaluating machine learning models with BigQuery ML to make data predictions.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c012.webp",
+      "tag": [
+        "Google Cloud",
+        "BigQuery ML",
+        "Dialogflow",
+        "Forecasting",
+        "Machine Learning"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c012.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/2ff7faae-a0be-46b9-bbd5-4bb4604f26fa"
+    },
+    {
+      "id": "C13",
+      "name": "Configure Service Accounts and IAM Roles for Google Cloud Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "f4e8ec6d-18a0-426e-9a59-16debacc0f1a",
+      "description": "Complete the Configure Service Accounts and IAM Roles for Google Cloud skill badge to demonstrate skills in the following: service accounts, custom roles, and how to set permissions using gcloud.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c013.webp",
+      "tag": [
+        "Google Cloud",
+        "BigQuery",
+        "IAM",
+        "IAM Roles"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c013.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/f4e8ec6d-18a0-426e-9a59-16debacc0f1a"
+    },
+    {
+      "id": "C14",
+      "name": "Cloud Functions: 3 Ways Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "00e08a99-7353-4f15-b5a9-452ce58fbcd4",
+      "description": "Complete the Cloud Functions: 3 Ways skill badge to demonstrate skills in the following: how to use Cloud Functions (including 2nd gen) through the Google Cloud console and on the command line.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c014.webp",
+      "tag": [
+        "Google Cloud",
+        "Cloud Functions",
+        "Cloud Storage",
+        "Google Cloud Console"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c014.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/00e08a99-7353-4f15-b5a9-452ce58fbcd4"
+    },
+    {
+      "id": "C15",
+      "name": "Automate Data Capture at Scale with Document AI Skill Badge",
+      "issuingOrganization": "Google Cloud",
+      "credentialID": "df1096ac-71ce-430b-9288-eb242dcbfed7",
+      "description": "Complete the introductory Automate Data Capture at Scale with Document AI skill badge to demonstrate skills in the following: how to create a document processing pipeline that will automatically process documents and how to use the Document AI form processor to extract data from the documents and save the data.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c015.webp",
+      "tag": [
+        "Google Cloud",
+        "Data Capture",
+        "Data Extraction",
+        "Data Processing",
+        "Document AI"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c015.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/df1096ac-71ce-430b-9288-eb242dcbfed7"
     }
   ]
 }

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Share_Tech_Mono } from "next/font/google";
+import { Archivo, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/app/components/Navbar";
 import { Footer } from "@/app/components/Footer";
 
 // Configure Fonts
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ["latin"], variable: "--font-share-tech-mono" });
+const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo", display: "swap" });
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", display: "swap" });
 
 export const metadata: Metadata = {
   title: "DevPortfolio - Frontend Developer & Geologist",
@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
       </head>
       {/* We add both font variables here, which allows Tailwind's font-display and font-body to pick them up via CSS vars or global classes if correctly configured in layout */}
-      <body className={`${inter.variable} ${shareTechMono.variable}`} suppressHydrationWarning>
+      <body className={`${archivo.variable} ${bricolage.variable}`} suppressHydrationWarning>
         {/* Ambient Backgrounds */}
         <div className="fixed inset-0 z-[-2] bg-background-dark"></div>
         <div className="fixed inset-0 z-[-1] tech-grid opacity-30"></div>

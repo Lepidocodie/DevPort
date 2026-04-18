@@ -25,7 +25,7 @@ export function ProjectCard({
     const src = srcPath ? (srcPath.startsWith('/') ? srcPath : `/${srcPath}`) : defaultImage;
 
     return (
-        <div className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-500 ease-smooth border border-white/5 hover:border-primary/50 hover:shadow-neon-green group flex flex-col h-full bg-card-dark/40 backdrop-blur-xl">
+        <div className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-[400ms] ease-[var(--ease-out-quart)] border border-white/5 hover:border-primary/50 hover:shadow-neon-green group flex flex-col h-full bg-card-dark/40 backdrop-blur-xl">
             <Link href={`/project/${id}`} className="block h-52 bg-gray-900 relative overflow-hidden shrink-0">
                 <Image
                     src={src}
@@ -54,8 +54,8 @@ export function ProjectCard({
             </Link>
 
             <div className="p-6 flex flex-col flex-grow relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-3 line-clamp-1 group-hover:text-primary transition-colors">{title}</h3>
-                <p className="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow leading-relaxed font-light">
+                <h3 className="text-2xl font-bold text-white mb-3 line-clamp-1 group-hover:text-primary transition-colors font-display tracking-tight">{title}</h3>
+                <p className="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow leading-relaxed font-body font-light opacity-80">
                     {description}
                 </p>
                 <div className="flex gap-4 mt-auto">

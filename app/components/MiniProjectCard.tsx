@@ -25,7 +25,7 @@ export function MiniProjectCard({
     const src = srcPath ? (srcPath.startsWith('/') ? srcPath : `/${srcPath}`) : defaultImage;
 
     return (
-        <div className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300 ease-smooth border border-white/5 hover:border-secondary/50 hover:shadow-neon-blue group flex flex-col h-full bg-card-dark/40 backdrop-blur-xl">
+        <div className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-1.5 transition-all duration-[400ms] ease-[var(--ease-out-quart)] border border-white/5 hover:border-secondary/50 hover:shadow-neon-blue group flex flex-col h-full bg-card-dark/40 backdrop-blur-xl">
             <Link href={`/project/${id}`} className="block h-44 bg-gray-900 relative overflow-hidden shrink-0">
                 <Image
                     src={src}
@@ -54,8 +54,8 @@ export function MiniProjectCard({
             </Link>
 
             <div className="p-5 flex flex-col flex-grow relative z-10">
-                <h3 className="text-xl font-bold text-white mb-2 line-clamp-1 group-hover:text-secondary transition-colors">{title}</h3>
-                <p className="text-gray-400 text-xs mb-5 line-clamp-2 flex-grow leading-relaxed font-light">
+                <h3 className="text-xl font-bold text-white mb-2 line-clamp-1 group-hover:text-secondary transition-colors font-display tracking-tight">{title}</h3>
+                <p className="text-gray-400 text-xs mb-5 line-clamp-2 flex-grow leading-relaxed font-body font-light opacity-80">
                     {description}
                 </p>
                 <div className="flex gap-3 mt-auto">
