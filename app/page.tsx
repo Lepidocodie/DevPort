@@ -13,17 +13,17 @@ import data from "@/public/data/data.json";
 export default function Home() {
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 40, scale: 0.98 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1, 
-      transition: { 
-        duration: 0.7, 
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
         ease: [0.25, 1, 0.5, 1]
-      } 
+      }
     }
   };
-  
+
   const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -88,21 +88,21 @@ export default function Home() {
       {/* =========================================
           Hero Section
           ========================================= */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        id="home" 
+        id="home"
         className="relative min-h-[85vh] flex items-center justify-center mt-12 md:mt-0"
       >
-        <motion.div 
+        <motion.div
           variants={fadeUp}
           className="glass-panel rounded-3xl p-10 md:p-14 lg:p-16 border border-white/5 shadow-2xl relative overflow-hidden group max-w-4xl w-full text-center"
         >
           <div className="relative z-10 flex flex-col items-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight tracking-tight">
-              FRONTEND DEVELOPER
-              <br/>
+              FULL STACK DEVELOPER
+              <br />
               <span className="text-gray-500 font-light">&amp;</span> <span className="text-primary italic">GEOLOGIST</span>
             </h1>
 
@@ -141,17 +141,15 @@ export default function Home() {
           {skillCategories.map((cat, idx) => (
             <div
               key={cat.title}
-              className={`glass-panel p-7 rounded-2xl border border-white/5 transition-all duration-[400ms] ease-[var(--ease-out-quart)] group ${
-                cat.color === "primary"
+              className={`glass-panel p-7 rounded-2xl border border-white/5 transition-all duration-[400ms] ease-[var(--ease-out-quart)] group ${cat.color === "primary"
                   ? "hover:border-primary/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.08)]"
                   : "hover:border-secondary/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)]"
-              } ${idx === 6 ? "md:col-span-2 lg:col-span-1" : ""}`}
+                } ${idx === 6 ? "md:col-span-2 lg:col-span-1" : ""}`}
             >
               <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
                 <span className="text-xl" aria-hidden="true">{cat.icon}</span>
-                <h3 className={`font-display font-bold text-xs uppercase tracking-[0.25em] transition-colors ${
-                  cat.color === "primary" ? "text-gray-500 group-hover:text-primary" : "text-gray-500 group-hover:text-secondary"
-                }`}>
+                <h3 className={`font-display font-bold text-xs uppercase tracking-[0.25em] transition-colors ${cat.color === "primary" ? "text-gray-500 group-hover:text-primary" : "text-gray-500 group-hover:text-secondary"
+                  }`}>
                   {cat.title}
                 </h3>
               </div>
@@ -159,11 +157,10 @@ export default function Home() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className={`px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md border transition-colors duration-300 ${
-                      cat.color === "primary"
+                    className={`px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md border transition-colors duration-300 ${cat.color === "primary"
                         ? "bg-primary/5 border-primary/15 text-gray-300 group-hover:border-primary/30 group-hover:text-white"
                         : "bg-secondary/5 border-secondary/15 text-gray-300 group-hover:border-secondary/30 group-hover:text-white"
-                    }`}
+                      }`}
                   >
                     {skill}
                   </span>
@@ -177,12 +174,12 @@ export default function Home() {
       {/* =========================================
           Projects Section
           ========================================= */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
-        id="projects" 
+        id="projects"
         className="pt-24 relative"
       >
         <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 relative z-10">
@@ -293,12 +290,12 @@ export default function Home() {
       {/* =========================================
           About Me / Logbook
           ========================================= */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
-        id="about" 
+        id="about"
         className="pb-20"
       >
         <motion.div variants={fadeUp} className="text-center md:text-left mb-16 border-b border-white/5 pb-8 relative">
