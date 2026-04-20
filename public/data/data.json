@@ -186,6 +186,25 @@
   ],
   "certificate": [
     {
+      "id": "C016",
+      "name": "Cybersecurity for IT Professional by Huawei & AIS Academy",
+      "issuingOrganization": "AIS Academy",
+      "credentialID": "7eae6154-fc7e-422f-a80a-38ec70c476f3",
+      "description": "This badge certifies proficiency, in analyze and design security policies, configure firewalls with NAT and high availability, apply IPS and PKI for secure communication and attack prevention, and effectively manage security incidents.",
+      "year": "2026",
+      "cover": "my-portfolio/data/image/certificate/c016.webp",
+      "tag": [
+        "Firewall Configuration (NAT & High Availability)",
+        "IPS",
+        "PKI & Security Incident Management",
+        "Security Policy Design & Governance"
+      ],
+      "image": [
+        "my-portfolio/data/image/certificate/c016.webp"
+      ],
+      "link": "https://www.credly.com/earner/earned/badge/7eae6154-fc7e-422f-a80a-38ec70c476f3"
+    },
+    {
       "id": "C01",
       "name": "Use APIs to Work with Cloud Storage Skill Badge",
       "issuingOrganization": "Google Cloud",

@@ -36,6 +36,25 @@ export default function Home() {
   };
 
   const [activeCert, setActiveCert] = React.useState<typeof data.certificate[0] | null>(null);
+  const [activeTag, setActiveTag] = React.useState<string>("All");
+
+  const certificateTags = React.useMemo(() => {
+    const tags = new Set<string>();
+    data.certificate.forEach(cert => {
+      if (Array.isArray(cert.tag)) {
+        cert.tag.forEach(t => tags.add(t));
+      }
+    });
+    return ["All", ...Array.from(tags).sort()];
+  }, []);
+
+  const filteredCertificates = React.useMemo(() => {
+    if (activeTag === "All") return data.certificate;
+    return data.certificate.filter(cert => {
+      if (!Array.isArray(cert.tag)) return false;
+      return cert.tag.includes(activeTag);
+    });
+  }, [activeTag]);
 
   const skillCategories = [
     {
@@ -142,8 +161,8 @@ export default function Home() {
             <div
               key={cat.title}
               className={`glass-panel p-7 rounded-2xl border border-white/5 transition-all duration-[400ms] ease-[var(--ease-out-quart)] group ${cat.color === "primary"
-                  ? "hover:border-primary/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.08)]"
-                  : "hover:border-secondary/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)]"
+                ? "hover:border-primary/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.08)]"
+                : "hover:border-secondary/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)]"
                 } ${idx === 6 ? "md:col-span-2 lg:col-span-1" : ""}`}
             >
               <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
@@ -158,8 +177,8 @@ export default function Home() {
                   <span
                     key={skill}
                     className={`px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md border transition-colors duration-300 ${cat.color === "primary"
-                        ? "bg-primary/5 border-primary/15 text-gray-300 group-hover:border-primary/30 group-hover:text-white"
-                        : "bg-secondary/5 border-secondary/15 text-gray-300 group-hover:border-secondary/30 group-hover:text-white"
+                      ? "bg-primary/5 border-primary/15 text-gray-300 group-hover:border-primary/30 group-hover:text-white"
+                      : "bg-secondary/5 border-secondary/15 text-gray-300 group-hover:border-secondary/30 group-hover:text-white"
                       }`}
                   >
                     {skill}
@@ -192,9 +211,6 @@ export default function Home() {
               Featured Work
             </h2>
           </div>
-          <p className="text-gray-400 max-w-sm font-body font-light text-base leading-relaxed opacity-80">
-            Structural logic met with clean UI execution.
-          </p>
         </motion.div>
         <motion.div variants={fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full relative z-10">
           {data.project.map((proj) => (
@@ -224,7 +240,7 @@ export default function Home() {
       >
         <motion.div variants={fadeUp} className="text-left mb-12 border-b border-white/10 pb-6 relative">
           <div className="absolute bottom-0 left-0 w-32 h-[2px] bg-secondary"></div>
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-white uppercase tracking-widest">Laboratory</h2>
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-white uppercase tracking-widest">Laboratory & Workshop</h2>
         </motion.div>
         <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {data.miniproject.map((miniProj) => (
@@ -252,7 +268,7 @@ export default function Home() {
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
       >
-        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
           <div>
             <div className="flex items-center gap-4 mb-2">
               <span className="text-primary font-display tracking-widest text-sm uppercase">Verified</span>
@@ -262,12 +278,30 @@ export default function Home() {
               Certificates &amp; Badges
             </h2>
           </div>
-          <p className="text-gray-400 max-w-xs font-body font-light text-sm leading-relaxed opacity-80">
-            {data.certificate.length} verified skill badges from Google Cloud.
+          <p className="text-gray-400 max-w-xs font-body font-light text-sm leading-relaxed opacity-80 md:text-right">
+            {filteredCertificates.length} verified skill badges.
           </p>
         </motion.div>
+
+        {/* Certificate Filter Buttons */}
+        <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+          {certificateTags.map(tag => (
+            <button
+              key={tag}
+              onClick={() => setActiveTag(tag)}
+              className={`px-4 py-2 text-xs font-display tracking-wider whitespace-nowrap uppercase rounded-full border transition-all duration-300 flex-shrink-0 ${
+                activeTag === tag
+                  ? "bg-primary text-background-dark border-primary shadow-[0_0_15px_rgba(16,185,129,0.3)] font-bold"
+                  : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </motion.div>
+
         <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-          {data.certificate.map((cert) => (
+          {filteredCertificates.map((cert) => (
             <CertificateCard
               key={cert.id}
               name={cert.name}
@@ -327,13 +361,13 @@ export default function Home() {
 
               <div className="space-y-4 font-body text-gray-400 leading-relaxed text-lg">
                 <p>Former prospector applying the precision of geological mapping to complex digital landscapes.</p>
-                <p>Specializing in React systems with high structural integrity and meticulously defined logic.</p>
+                <p>Specializing in Full-Stack Development with a focus on building scalable and maintainable web applications.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-white/5">
                 <div className="flex items-center gap-3">
                   <i className="bi bi-envelope text-primary"></i>
-                  <a href="mailto:sonjainarongrit15@gmail.com" className="text-gray-300 hover:text-white transition-colors">Email</a>
+                  <a href="mailto:sonjainarongrit15@gmail.com" className="text-gray-300 hover:text-white transition-colors">Email: [EMAIL_ADDRESS]</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <i className="bi bi-geo-alt text-primary"></i>
