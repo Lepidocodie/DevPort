@@ -59,6 +59,11 @@ DevPort/
 │   ├── components/           # Reusable UI elements
 │   │   ├── CertificateCard.tsx
 │   │   ├── CertificateModal.tsx
+│   │   ├── ChromaButton.tsx  # Animated rainbow border CTA
+│   │   ├── GlassNavButton.tsx# 3D frosted glass navigation
+│   │   ├── InteractiveGrid.tsx
+│   │   ├── LightRays.tsx
+│   │   ├── BlindsTextReveal.tsx
 │   │   ├── MiniProjectCard.tsx
 │   │   ├── Navbar.tsx
 │   │   ├── ProjectCard.tsx
@@ -72,7 +77,9 @@ DevPort/
 │   ├── data/
 │   │   ├── data.json         # Master content data
 │   │   └── image/            # Organized asset directory
-├── lib/                      # Utilities
+├── app/lib/                  # Utilities & Data Access
+│   ├── data.ts               # Encapsulated OOP PortfolioRepository
+│   └── types.ts              # TypeScript interfaces
 ├── postcss.config.mjs
 ├── tailwind.config.ts        # Tailwind setup
 └── package.json
@@ -116,15 +123,17 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ## ⚡ Design System Highlights
 
-**CSS Architecture**:
-- Utilizes CSS custom properties extensively in `globals.css`
-- Custom `glass-panel` utilities with dynamic border shading and backdrop filters
-- Distinct `btn-clean` system with neon glow hover effects
+**CSS Architecture & OOP Foundation**:
+- Adheres to **Impeccable Design Laws**, avoiding generic components and "slop" AI aesthetics.
+- Utilizes CSS custom properties extensively in `globals.css` with a robust `clamp()` spacing system.
+- Refactored Data Access Layer using **Object-Oriented Programming (OOP)** and **Encapsulation** (`PortfolioRepository`) for scalable, decoupled data hydration.
+- Custom `glass-nav-pill` utilities with 3D frosted glass, diagonal shines, and dynamic border shading.
+- Distinct `chroma-btn` system featuring animated spinning rainbow borders and deep slate overlays.
 
-**Color Theme** (Deep Slate & Emerald):
-- `--primary`: Vibrant Emerald
-- `--secondary`: Electric Sky Blue
-- `--background-dark`: Rich, deep slate/obsidian for high contrast
+**Color Theme & Layout Strategy**:
+- `--primary-accent`: Cyberpunk Cyan (`#00EDFF`) & Magenta (`#CC3366`)
+- `--background-dark`: Deep Slate (`#333333`) and Obsidian (`rgb(5, 5, 5)`) for high contrast
+- **Responsive Symmetry**: Standardized `38px` and `48px` sizing variants (`-sm`, `-lg`) across buttons to guarantee perfect flex alignment in cards and hero sections.
 
 ---
 

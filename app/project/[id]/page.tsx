@@ -2,208 +2,176 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Github, ExternalLink, CheckCircle2, Calendar, User } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
 import { ProjectCarousel } from "@/app/components/ProjectCarousel";
-import data from "@/public/data/data.json";
+import { portfolioData, ImageNormalizer } from "@/app/lib/data";
+import { GlassNavButton } from "@/app/components/GlassNavButton";
+
 
 interface ProjectPageProps {
   params: Promise<{ id: string }> | { id: string };
 }
 
 export function generateStaticParams() {
-  const projects = data.project.map((p) => ({ id: String(p.id) }));
-  const miniprojects = data.miniproject.map((p) => ({ id: String(p.id) }));
-  return [...projects, ...miniprojects];
+  return [
+    ...portfolioData.getProjects().map((p) => ({ id: String(p.id) })),
+    ...portfolioData.getMiniProjects().map((p) => ({ id: String(p.id) })),
+  ];
 }
 
 export default async function ProjectDetail({ params }: ProjectPageProps) {
   const resolvedParams = await params;
   const projectId = resolvedParams.id;
 
-  //ฟังก์ชันตรวจสอบและดึงข้อมูลว่าเป็น Project หรือ Mini Project 
-  const getProjectData = (id: string) => {
-    // หา Project หลักก่อน
-    const foundInProject = data.project.find((p) => String(p.id) === String(id));
-    if (foundInProject) return foundInProject;
+  const project = portfolioData.getProjectById(projectId);
+  if (!project) notFound();
 
-    //ถ้าไม่เจอ ให้ค้นหาใน Mini Project
-    const foundInMiniProject = data.miniproject.find((p) => String(p.id) === String(id));
-    if (foundInMiniProject) return foundInMiniProject;
-
-    //ถ้าไม่เจอเลยในทั้ง 2 ที่ คืนค่า null
-    return null;
-  };
-
-  const project = getProjectData(projectId);
-
-  // 404
-  if (!project) {
-    notFound();
-  }
-
-  let carouselImages: string[] = [];
-  if (project.image && project.image.length > 0) {
-    // ลูปเพื่อคลีน Path รูปภาพทุกรูปให้ถูกต้อง
-    carouselImages = project.image.map(img => 
-      img.startsWith('/') ? img : `/${img.replace('my-portfolio/', '')}`
-    );
-  } else if (project.cover) {
-    // ถ้าไม่มี array image ให้ใช้ cover รูปเดียว
-    carouselImages = [
-      project.cover.startsWith('/') ? project.cover : `/${project.cover.replace('my-portfolio/', '')}`
-    ];
-  } else {
-    carouselImages = ['/placeholder.jpg'];
-  }
+  const carouselImages = ImageNormalizer.normalizeImageArray(project.image, project.cover);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background-dark text-white font-body selection:bg-primary/30">
+    <div className="min-h-screen flex flex-col bg-[#333333] text-white selection:bg-[#00EDFF]/20">
       <main className="flex-1">
-        <section className="pt-32 pb-16 relative">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <Link 
-              href="/#projects" 
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-all duration-300 mb-12 font-display text-xs uppercase tracking-widest group"
+        {/* Hero */}
+        <section className="pt-[100px] pb-[56px]">
+          <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
+            <Link
+              href="/#projects"
+              className="inline-flex items-center gap-[8px] text-[#D6D6D6] hover:text-[#00DEFF] transition-colors duration-300 mb-[40px] text-[14px] group"
             >
-              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> 
-              <span>Back to Systems</span>
+              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
+              Back to Projects
             </Link>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-              <div className="space-y-8">
-                <div>
-                  <div className="flex items-center gap-4 mb-3">
-                    <span className="text-secondary font-display tracking-[0.2em] text-[10px] uppercase">
-                      {projectId.startsWith('M') ? 'Laboratory' : 'Case Study'}
-                    </span>
-                    <div className="h-[1px] w-8 bg-secondary/30"></div>
-                  </div>
+            <div className="grid lg:grid-cols-2 gap-[40px] items-start">
+              {/* Content */}
+              <div className="space-y-[24px]">
+                <h1 className="!text-[28px] font-display font-bold text-white leading-[28px]">
+                  {project.name}
+                </h1>
 
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-tight">
-                    {project.name}
-                  </h1>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-[8px]">
                   {project.tag.map((t) => (
-                    <span key={t} className="px-3 py-1 bg-white/5 text-gray-400 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest">
-                      {t}
-                    </span>
+                    <span key={t} className="tag-ghost">{t}</span>
                   ))}
                 </div>
 
-                <p className="text-lg md:text-xl text-gray-400 leading-relaxed font-body opacity-90 max-w-xl">
+                <p className="text-[18px] text-[#D6D6D6] font-bold leading-[24px] max-w-xl">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex flex-wrap gap-[16px] pt-[16px]">
                   {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn-clean px-8 py-4 bg-primary text-background-dark font-display font-bold uppercase tracking-wider rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all flex items-center gap-2">
-                       Launch Project <ExternalLink size={18} />
-                    </a>
+                    <GlassNavButton
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass-nav-lg"
+                      label={<>Launch Project <ExternalLink size={16} /></>}
+                    />
                   )}
                   {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-clean px-8 py-4 border border-white/20 text-white hover:bg-white/5 font-display font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2">
-                       View Source <Github size={18} />
-                    </a>
+                    <GlassNavButton
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass-nav-lg"
+                      label={<>View Source <Github size={16} /></>}
+                    />
                   )}
                 </div>
               </div>
 
               {/* Carousel */}
-              <div className="w-full lg:sticky lg:top-32 h-fit">
-                <div className="p-1 bg-white/5 rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+              <div className="w-full lg:sticky lg:top-[100px] h-fit">
+                <div className="p-[4px] bg-[#444444] rounded-[15px] border border-white/19 overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.5)]">
                   <ProjectCarousel images={carouselImages} projectName={project.name} />
                 </div>
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* --- ส่วนรายละเอียดเนื้อหาด้านล่าง --- */}
-        <section className="py-24 container mx-auto px-6 max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-16">
-            
-            <div className="md:col-span-2 space-y-20">
-              <div>
-                <h2 className="text-sm font-display font-bold text-white uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
-                  <span className="w-12 h-[1px] bg-primary"></span>
-                  Logic & Execution
-                </h2>
-                <div className="grid gap-4">
-                  {project.features.map((feature, index) => (
-                    <div key={index} className="glass-panel p-6 rounded-xl border border-white/5 flex items-start gap-4 group hover:border-primary/30 transition-colors">
-                      <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
-                        <CheckCircle2 size={14} />
-                      </div>
-                      <span className="text-gray-300 leading-relaxed font-body">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Gallery */}
-              {project.image && project.image.length > 0 && (
+        {/* Detail */}
+        <section className="py-[56px]">
+          <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
+            <div className="grid md:grid-cols-3 gap-[40px]">
+              {/* Features & Gallery */}
+              <div className="md:col-span-2 space-y-[56px]">
                 <div>
-                  <h2 className="text-sm font-display font-bold text-white uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
-                    <span className="w-12 h-[1px] bg-primary"></span>
-                    Field Observations
+                  <h2 className="!text-[16px] font-normal text-white mb-[24px]">
+                    Key Features
                   </h2>
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    {project.image.map((imgSrc, index) => {
-                      const cleanPath = imgSrc.startsWith('/') ? imgSrc : `/${imgSrc.replace('my-portfolio/', '')}`;
-                      return (
-                        <div key={index} className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/5 shadow-xl group">
-                          <Image 
-                            src={cleanPath} 
+                  <div className="grid gap-[16px]">
+                    {project.features.map((feature, index) => (
+                      <div
+                        key={index}
+                        className="bg-[#444444] p-[24px] rounded-[15px] border border-white/19 flex items-start gap-[16px] group hover:border-white/30 transition-colors duration-300"
+                      >
+                        <div className="w-[24px] h-[24px] rounded-[25px] bg-[#00EDFF]/20 flex items-center justify-center text-[#00EDFF] shrink-0 mt-0.5">
+                          <CheckCircle2 size={14} />
+                        </div>
+                        <span className="text-[#D6D6D6] leading-[24px] text-[14px]">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {project.image && project.image.length > 0 && (
+                  <div>
+                    <h2 className="!text-[16px] font-normal text-white mb-[24px]">
+                      Screenshots
+                    </h2>
+                    <div className="grid sm:grid-cols-2 gap-[24px]">
+                      {project.image.map((imgSrc, index) => (
+                        <div key={index} className="relative w-full aspect-video rounded-[15px] overflow-hidden border border-white/19 shadow-[0_4px_12px_rgba(0,0,0,0.3)] group">
+                          <Image
+                            src={ImageNormalizer.normalizeImagePath(imgSrc)}
                             alt={`${project.name} preview ${index + 1}`}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[var(--ease-out-quart)] opacity-80 group-hover:opacity-100"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
                           />
                         </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-8">
-              <div className="glass-panel border border-white/5 rounded-2xl p-8 sticky top-32">
-                <h3 className="text-xs font-display font-bold text-gray-500 uppercase tracking-widest mb-8 border-b border-white/5 pb-4">Classification</h3>
-                
-                <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                    <User size={16} className="text-primary mt-1" />
-                    <div>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Role</p>
-                      <p className="text-white font-display font-bold">{project.role}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <Calendar size={16} className="text-primary mt-1" />
-                    <div>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Epoch</p>
-                      <p className="text-white font-display font-bold">{project.year}</p>
-                    </div>
-                  </div>
-
-                  <div className="pt-8 border-t border-white/5">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-4">Core Components</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tag.map((t) => (
-                        <span key={t} className="px-2 py-1 bg-white/5 text-gray-400 text-[10px] font-bold uppercase tracking-widest border border-white/5 rounded-sm">
-                          {t}
-                        </span>
                       ))}
                     </div>
                   </div>
+                )}
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-[24px]">
+                <div className="bg-[#444444] border border-white/19 rounded-[15px] p-[28px] sticky top-[100px]">
+                  <h3 className="text-[12px] font-display font-bold text-[#ABB8C3] uppercase tracking-wider mb-[24px] border-b border-white/19 pb-[16px]">
+                    Project Info
+                  </h3>
+
+                  <div className="space-y-[24px]">
+                    <div className="flex items-start gap-[16px]">
+                      <User size={16} className="text-[#00DEFF] mt-1" />
+                      <div>
+                        <p className="text-[12px] text-[#ABB8C3] uppercase tracking-wider mb-[4px]">Role</p>
+                        <p className="text-white font-display font-bold text-[14px]">{project.role}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-[16px]">
+                      <Calendar size={16} className="text-[#00DEFF] mt-1" />
+                      <div>
+                        <p className="text-[12px] text-[#ABB8C3] uppercase tracking-wider mb-[4px]">Period</p>
+                        <p className="text-white font-display font-bold text-[14px]">{project.year}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-[24px] border-t border-white/19">
+                      <p className="text-[12px] text-[#ABB8C3] uppercase tracking-wider mb-[12px]">Tech Stack</p>
+                      <div className="flex flex-wrap gap-[8px]">
+                        {project.tag.map((t) => (
+                          <span key={t} className="tag-cyan !text-[10px] !py-[4px] !px-[8px]">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
         </section>
       </main>

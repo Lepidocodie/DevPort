@@ -90,8 +90,7 @@
         "my-portfolio/data/image/skillframex/skillframex2.webp",
         "my-portfolio/data/image/skillframex/skillframex3.webp",
         "my-portfolio/data/image/skillframex/skillframex4.webp",
-        "my-portfolio/data/image/skillframex/skillframex5.webp",
-        "my-portfolio/data/image/skillframex/skillframex6.webp"
+        "my-portfolio/data/image/skillframex/skillframex5.webp"
       ],
       "link": "https://skill-frame-x-v2.vercel.app/",
       "github": "https://github.com/Lepidocodie/SkillFrameX---V2"
@@ -109,7 +108,7 @@
       ],
       "role": "Frontend Developer",
       "year": "Feb 2026",
-      "cover": "my-portfolio/data/image/devport2/devport2_1.webp",
+      "cover": "my-portfolio/data/image/devport/devport1.webp",
       "tag": [
         "Next.js",
         "React",
@@ -117,11 +116,11 @@
         "Tailwind CSS"
       ],
       "image": [
-        "my-portfolio/data/image/devport2/devport2_1.webp",
-        "my-portfolio/data/image/devport2/devport2_2.webp",
-        "my-portfolio/data/image/devport2/devport2_3.webp",
-        "my-portfolio/data/image/devport2/devport2_4.webp",
-        "my-portfolio/data/image/devport2/devport2_5.webp"
+        "my-portfolio/data/image/devport/devport1.webp",
+        "my-portfolio/data/image/devport/devport2.webp",
+        "my-portfolio/data/image/devport/devport3.webp",
+        "my-portfolio/data/image/devport/devport4.webp",
+        "my-portfolio/data/image/devport/devport5.webp"
       ],
       "link": "https://dev-portfolio-smoky-ten.vercel.app/",
       "github": "https://github.com/Lepidocodie/DevPort"

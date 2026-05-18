@@ -3,389 +3,283 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer } from "@/app/lib/animations";
+import { portfolioData, SKILL_CATEGORIES } from "@/app/lib/data";
 import { ProjectCard } from "@/app/components/ProjectCard";
 import { MiniProjectCard } from "@/app/components/MiniProjectCard";
 import { CertificateCard } from "@/app/components/CertificateCard";
 import { CertificateModal } from "@/app/components/CertificateModal";
-import data from "@/public/data/data.json";
+import { BlindsTextReveal } from "@/app/components/BlindsTextReveal";
+import type { Certificate } from "@/app/lib/types";
+
+
+import { ChromaButton } from "@/app/components/ChromaButton";
+import { GlassNavButton } from "@/app/components/GlassNavButton";
+
+const LightRays = dynamic(() => import("@/app/components/LightRays").then(m => m.LightRays), { ssr: false });
+const InteractiveGrid = dynamic(() => import("@/app/components/InteractiveGrid").then(m => m.InteractiveGrid), { ssr: false });
 
 export default function Home() {
-  const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 40, scale: 0.98 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.7,
-        ease: [0.25, 1, 0.5, 1]
-      }
-    }
-  };
+  const [activeCert, setActiveCert] = React.useState<Certificate | null>(null);
+  const [activeTag, setActiveTag] = React.useState("All");
 
-  const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1
-      }
-    }
-  };
+  const projects = portfolioData.getProjects();
+  const miniProjects = portfolioData.getMiniProjects();
+  const certificateTags = portfolioData.getCertificateTags();
+  const filteredCertificates = portfolioData.filterCertificates(activeTag);
 
-  const [activeCert, setActiveCert] = React.useState<typeof data.certificate[0] | null>(null);
-  const [activeTag, setActiveTag] = React.useState<string>("All");
-
-  const certificateTags = React.useMemo(() => {
-    const tags = new Set<string>();
-    data.certificate.forEach(cert => {
-      if (Array.isArray(cert.tag)) {
-        cert.tag.forEach(t => tags.add(t));
-      }
-    });
-    return ["All", ...Array.from(tags).sort()];
-  }, []);
-
-  const filteredCertificates = React.useMemo(() => {
-    if (activeTag === "All") return data.certificate;
-    return data.certificate.filter(cert => {
-      if (!Array.isArray(cert.tag)) return false;
-      return cert.tag.includes(activeTag);
-    });
-  }, [activeTag]);
-
-  const skillCategories = [
-    {
-      icon: "🎨",
-      title: "Front-end",
-      color: "primary" as const,
-      skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Vue", "Nuxt.js", "TailwindCSS", "Bootstrap"],
-    },
-    {
-      icon: "⚙️",
-      title: "Back-end",
-      color: "secondary" as const,
-      skills: ["Node.js", "Python", "RESTful API", "Web Authentication", "JWT", "Passport.js"],
-    },
-    {
-      icon: "🗄️",
-      title: "Database",
-      color: "primary" as const,
-      skills: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "TypeORM", "ODM", "Database Design", "ER Diagram"],
-    },
-    {
-      icon: "☁️",
-      title: "DevOps & Cloud",
-      color: "secondary" as const,
-      skills: ["Docker", "Kubernetes", "Google Cloud", "AWS EC2", "Nginx", "GitHub Actions CI/CD"],
-    },
-    {
-      icon: "🧪",
-      title: "Testing & QA",
-      color: "primary" as const,
-      skills: ["Unit Testing", "Integration Testing", "Performance Testing", "Selenium", "Supertest", "SonarQube"],
-    },
-    {
-      icon: "🛠️",
-      title: "Tools",
-      color: "secondary" as const,
-      skills: ["GitHub", "GitHub Desktop", "VSCode", "Vite", "Postman", "Figma"],
-    },
-    {
-      icon: "🔒",
-      title: "Security",
-      color: "primary" as const,
-      skills: ["OWASP Top 10"],
-    },
-  ];
+  const leadSkills = SKILL_CATEGORIES.filter((c) => c.size === "large");
+  const supportSkills = SKILL_CATEGORIES.filter((c) => c.size === "compact");
 
   return (
-    <main className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-24 relative z-10 w-full overflow-hidden">
+    <main className="relative z-10 w-full overflow-hidden">
 
-      {/* =========================================
-          Hero Section
-          ========================================= */}
+      {/* ══════════ HERO — LightRays background ══════════ */}
       <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        id="home"
-        className="relative min-h-[85vh] flex items-center justify-center mt-12 md:mt-0"
+        initial="hidden" animate="visible" variants={staggerContainer}
+        id="home" className="relative min-h-screen flex items-center justify-center px-6 lg:px-10"
       >
-        <motion.div
-          variants={fadeUp}
-          className="glass-panel rounded-3xl p-10 md:p-14 lg:p-16 border border-white/5 shadow-2xl relative overflow-hidden group max-w-4xl w-full text-center"
-        >
-          <div className="relative z-10 flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight tracking-tight">
-              FULL STACK DEVELOPER
-              <br />
-              <span className="text-gray-500 font-light">&amp;</span> <span className="text-primary italic">GEOLOGIST</span>
-            </h1>
+        <LightRays
+          color1="#00EDFF" color2="#CC3366"
+          backgroundColor="#333333"
+          intensity={50} rays={30} reach={40} speed={10} position={80}
+          className="absolute inset-0 z-0"
+        />
 
-            <motion.p variants={fadeUp} className="text-gray-400 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl font-body">
+        <div className="max-w-[1440px] w-full mx-auto relative z-10">
+          <div className="max-w-3xl">
+            <motion.p variants={fadeUp} className="text-[#CC3366] font-display text-[14px] mb-8">
+              Portfolio 2026
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mb-8">
+              <BlindsTextReveal
+                text="FULL STACK DEVELOPER & GEOLOGIST"
+                blindsColor="#CC3366"
+                textColor="#FFFFFF"
+                tag="h1"
+                trigger="appear"
+                direction="left-to-right"
+                stagger={0.1}
+                duration={0.6}
+              />
+            </motion.div>
+
+            <motion.p variants={fadeUp} className="text-[#D6D6D6] text-[18px] font-bold leading-[24px] mb-12 max-w-xl">
               Applying structural logic to web interfaces. Meticulously designed, thoroughly engineered.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-              <Link href="#projects" className="btn-clean w-full sm:w-1/2 flex items-center justify-center px-6 py-4 border border-primary text-background-dark bg-primary font-bold rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.1)] font-display uppercase tracking-wider hover:bg-emerald-400 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)] transition-all duration-300 active:scale-95">
-                <span className="flex items-center gap-2">View Work <i className="bi bi-arrow-down"></i></span>
-              </Link>
-              <a href="https://github.com/Lepidocodie" target="_blank" rel="noopener noreferrer" className="btn-clean w-full sm:w-1/2 flex items-center justify-center px-6 py-4 border border-white/20 text-white bg-white/5 hover:bg-white/10 hover:border-white/30 rounded-lg font-display uppercase tracking-wider transition-all duration-300 active:scale-95">
-                <i className="bi bi-github mr-2"></i> GitHub
-              </a>
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+              <ChromaButton
+                href="#projects"
+                label={<>View Work <i className="bi bi-arrow-down"></i></>}
+              />
+              <GlassNavButton
+                href="https://github.com/Lepidocodie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-nav-lg"
+                label={<><i className="bi bi-github"></i> GitHub</>}
+              />
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </motion.section>
 
-      {/* =========================================
-          Skills Section — 7 Categories
-          ========================================= */}
+      {/* ══════════ SKILLS — InteractiveGrid background ══════════ */}
       <motion.section
-        id="skills"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
+        id="skills" initial="hidden" whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
+        className="py-[96px] px-6 lg:px-10 relative"
       >
-        <motion.div variants={fadeUp} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-widest">Technical Arsenal</h2>
-          <div className="h-[2px] w-24 bg-primary mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.3)]"></div>
-        </motion.div>
+        <InteractiveGrid
+          gridColor="#FFFFFF" dotColor="#FFFFFF" hoverColor="#00EDFF"
+          gridSize={60} repulsionStrength={-0.65} radius={290}
+          dotSize={1.5} gridThickness={0.5} baseOpacity={0.06}
+        />
 
-        <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((cat, idx) => (
-            <div
-              key={cat.title}
-              className={`glass-panel p-7 rounded-2xl border border-white/5 transition-all duration-[400ms] ease-[var(--ease-out-quart)] group ${cat.color === "primary"
-                ? "hover:border-primary/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.08)]"
-                : "hover:border-secondary/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)]"
-                } ${idx === 6 ? "md:col-span-2 lg:col-span-1" : ""}`}
-            >
-              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
-                <span className="text-xl" aria-hidden="true">{cat.icon}</span>
-                <h3 className={`font-display font-bold text-xs uppercase tracking-[0.25em] transition-colors ${cat.color === "primary" ? "text-gray-500 group-hover:text-primary" : "text-gray-500 group-hover:text-secondary"
-                  }`}>
-                  {cat.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md border transition-colors duration-300 ${cat.color === "primary"
-                      ? "bg-primary/5 border-primary/15 text-gray-300 group-hover:border-primary/30 group-hover:text-white"
-                      : "bg-secondary/5 border-secondary/15 text-gray-300 group-hover:border-secondary/30 group-hover:text-white"
-                      }`}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      {/* =========================================
-          Projects Section
-          ========================================= */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        id="projects"
-        className="pt-24 relative"
-      >
-        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 relative z-10">
-          <div>
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-secondary font-display tracking-widest text-sm uppercase">Case Studies</span>
-              <div className="h-[1px] w-12 bg-secondary"></div>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white uppercase tracking-widest">
-              Featured Work
-            </h2>
-          </div>
-        </motion.div>
-        <motion.div variants={fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full relative z-10">
-          {data.project.map((proj) => (
-            <div key={proj.id} className="w-full">
-              <ProjectCard
-                id={proj.id}
-                title={proj.name}
-                description={proj.description}
-                tags={proj.tag}
-                demoUrl={proj.link}
-                repoUrl={proj.github}
-                image={proj.cover}
-              />
-            </div>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      {/* =========================================
-          Mini Projects / Laboratory
-          ========================================= */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeUp} className="text-left mb-12 border-b border-white/10 pb-6 relative">
-          <div className="absolute bottom-0 left-0 w-32 h-[2px] bg-secondary"></div>
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-white uppercase tracking-widest">Laboratory & Workshop</h2>
-        </motion.div>
-        <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {data.miniproject.map((miniProj) => (
-            <MiniProjectCard
-              key={miniProj.id}
-              id={miniProj.id}
-              title={miniProj.name}
-              description={miniProj.description}
-              tags={miniProj.tag}
-              demoUrl={miniProj.link}
-              repoUrl={miniProj.github}
-              image={miniProj.cover}
-            />
-          ))}
-        </motion.div>
-      </motion.section>
-
-      {/* =========================================
-          Certificates & Skill Badges
-          ========================================= */}
-      <motion.section
-        id="certificates"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-          <div>
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-primary font-display tracking-widest text-sm uppercase">Verified</span>
-              <div className="h-[1px] w-12 bg-primary"></div>
-            </div>
-            <h2 className="text-2xl md:text-4xl font-display font-bold text-white uppercase tracking-widest">
-              Certificates &amp; Badges
-            </h2>
-          </div>
-          <p className="text-gray-400 max-w-xs font-body font-light text-sm leading-relaxed opacity-80 md:text-right">
-            {filteredCertificates.length} verified skill badges.
-          </p>
-        </motion.div>
-
-        {/* Certificate Filter Buttons */}
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-          {certificateTags.map(tag => (
-            <button
-              key={tag}
-              onClick={() => setActiveTag(tag)}
-              className={`px-4 py-2 text-xs font-display tracking-wider whitespace-nowrap uppercase rounded-full border transition-all duration-300 flex-shrink-0 ${
-                activeTag === tag
-                  ? "bg-primary text-background-dark border-primary shadow-[0_0_15px_rgba(16,185,129,0.3)] font-bold"
-                  : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </motion.div>
-
-        <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-          {filteredCertificates.map((cert) => (
-            <CertificateCard
-              key={cert.id}
-              name={cert.name}
-              issuingOrganization={cert.issuingOrganization}
-              year={cert.year}
-              cover={cert.cover}
-              tags={cert.tag}
-              onClick={() => setActiveCert(cert)}
-            />
-          ))}
-        </motion.div>
-      </motion.section>
-
-      {/* Certificate Detail Modal */}
-      <CertificateModal
-        certificate={activeCert}
-        onClose={() => setActiveCert(null)}
-      />
-
-      {/* =========================================
-          About Me / Logbook
-          ========================================= */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        id="about"
-        className="pb-20"
-      >
-        <motion.div variants={fadeUp} className="text-center md:text-left mb-16 border-b border-white/5 pb-8 relative">
-          <div className="absolute bottom-[-1px] left-0 w-32 h-[1px] bg-primary"></div>
-          <h2 className="text-3xl lg:text-4xl font-display font-bold text-white uppercase tracking-[0.4em] opacity-50">Logbook</h2>
-        </motion.div>
-
-        <div className="flex flex-col md:flex-row gap-12 items-center justify-center lg:px-8">
-          <motion.div variants={fadeUp} className="relative w-72 h-72 shrink-0 group">
-            <div className="absolute inset-[-10px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-30 group-hover:opacity-60 blur-xl transition-opacity duration-700 animate-[spin_4s_linear_infinite]"></div>
-            <div className="absolute inset-0 rounded-full border border-primary/50 shadow-[0_0_30px_rgba(74,222,128,0.3)] animate-[pulse_3s_ease-in-out_infinite]"></div>
-            <div className="absolute inset-3 rounded-full border border-white/10 backdrop-blur-sm z-10"></div>
-            <Image
-              src="/data/image/proflie/profile1.webp"
-              alt="Narongrit Sornjai Profile"
-              fill
-              className="rounded-full object-cover p-4 relative z-20 group-hover:scale-105 transition-transform duration-500"
+        <div className="max-w-[1440px] mx-auto relative z-10">
+          <motion.div variants={fadeUp} className="mb-[40px]">
+            <BlindsTextReveal
+              text="Technical Arsenal"
+              blindsColor="#00EDFF"
+              textColor="#FFFFFF"
+              tag="h2"
+              trigger="scroll"
+              stagger={0.08}
             />
           </motion.div>
 
-          <motion.div variants={fadeUp} className="glass-panel p-10 rounded-2xl border border-white/5 hover:border-primary/20 transition-colors w-full max-w-2xl shadow-2xl relative group overflow-hidden">
-            <div className="space-y-8 relative z-10">
-              <div className="flex items-start gap-4">
-                <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl text-white font-display font-bold tracking-tight">Narongrit Sornjai</h3>
-                  <p className="text-primary font-display text-sm tracking-widest uppercase mt-2">Geologist turned Developer</p>
+          <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 gap-[24px] mb-[32px]">
+            {leadSkills.map((cat) => (
+              <div key={cat.title} className={`bg-[#444444] p-[28px] rounded-[15px] border border-white/19 group transition-all duration-400 ease-out hover:-translate-y-1 ${cat.accent === "cyan" ? "hover:shadow-[0_0_8px_rgba(0,237,255,0.3)]" : "hover:shadow-[0_0_8px_rgba(204,51,102,0.3)]"
+                }`}>
+                <div className="flex items-center gap-3 mb-[20px]">
+                  <span className="text-xl" aria-hidden="true">{cat.icon}</span>
+                  <span className={`font-display font-bold text-[14px] transition-colors duration-300 ${cat.accent === "cyan" ? "text-[#D6D6D6] group-hover:text-[#00DEFF]" : "text-[#D6D6D6] group-hover:text-[#CC3366]"
+                    }`}>{cat.title}</span>
+                </div>
+                <div className="flex flex-wrap gap-[8px]">
+                  {cat.skills.map((skill) => (
+                    <span key={skill} className={`px-[12px] py-[4px] text-[12px] font-medium rounded-[25px] border transition-colors duration-300 ${cat.accent === "cyan"
+                      ? "bg-[#00EDFF]/10 border-[#00EDFF]/30 text-[#C5F8FF] group-hover:border-[#00EDFF]/60"
+                      : "bg-[#CC3366]/10 border-[#CC3366]/30 text-[#CC3366] group-hover:border-[#CC3366]/60"
+                      }`}>{skill}</span>
+                  ))}
                 </div>
               </div>
+            ))}
+          </motion.div>
 
-              <div className="space-y-4 font-body text-gray-400 leading-relaxed text-lg">
+          <motion.div variants={fadeUp} className="space-y-[16px]">
+            {supportSkills.map((cat) => (
+              <div key={cat.title} className="bg-[#444444] px-[24px] py-[16px] rounded-[15px] border border-white/19 flex flex-col sm:flex-row sm:items-center gap-[12px] group transition-all duration-300 hover:border-white/30">
+                <div className="flex items-center gap-2 shrink-0 min-w-[160px]">
+                  <span className="text-base" aria-hidden="true">{cat.icon}</span>
+                  <span className={`font-display font-bold text-[14px] transition-colors duration-300 ${cat.accent === "cyan" ? "text-[#D6D6D6] group-hover:text-[#00DEFF]" : "text-[#D6D6D6] group-hover:text-[#CC3366]"
+                    }`}>{cat.title}</span>
+                </div>
+                <div className="flex flex-wrap gap-[8px]">
+                  {cat.skills.map((skill) => (
+                    <span key={skill} className="text-[14px] text-[#D6D6D6] leading-[24px]">
+                      {skill}{cat.skills.indexOf(skill) < cat.skills.length - 1 && <span className="text-[#ABB8C3] ml-[8px]">·</span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ══════════ PROJECTS ══════════ */}
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
+        id="projects" className="py-[96px] px-6 lg:px-10"
+      >
+        <div className="max-w-[1440px] mx-auto">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-between gap-4 mb-[40px]">
+            <BlindsTextReveal text="Personal Projects & Works" blindsColor="#CC3366" textColor="#FFFFFF" tag="h2" trigger="scroll" />
+            <div className="flex items-center gap-3 bg-[#CC3366]/10 border border-[#CC3366]/30 text-[#CC3366] px-4 py-1.5 rounded-full font-display font-medium text-[14px] shadow-[0_0_12px_rgba(204,51,102,0.15)] backdrop-blur-sm self-end sm:self-auto">
+              <div className="w-2 h-2 rounded-full bg-[#CC3366] animate-pulse"></div>
+              {projects.length} Projects
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-[24px]">
+            {projects.map((proj) => (
+              <ProjectCard key={proj.id} id={proj.id} title={proj.name} description={proj.description}
+                tags={proj.tag} demoUrl={proj.link} repoUrl={proj.github} image={proj.cover} />
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ══════════ MINI PROJECTS ══════════ */}
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
+        className="py-[56px] px-6 lg:px-10"
+      >
+        <div className="max-w-[1440px] mx-auto">
+          <motion.div variants={fadeUp} className="mb-[32px]">
+            <BlindsTextReveal text="Laboratory & Mini Projects" blindsColor="#00EDFF" textColor="#FFFFFF" tag="h2" trigger="scroll" />
+          </motion.div>
+          <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px]">
+            {miniProjects.map((mp) => (
+              <MiniProjectCard key={mp.id} id={mp.id} title={mp.name} description={mp.description}
+                tags={mp.tag} demoUrl={mp.link} repoUrl={mp.github} image={mp.cover} />
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ══════════ CERTIFICATES ══════════ */}
+      <motion.section id="certificates" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
+        className="py-[96px] px-6 lg:px-10"
+      >
+        <div className="max-w-[1440px] mx-auto">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-between gap-4 mb-[24px]">
+            <BlindsTextReveal text="Certificates & Badges" blindsColor="#CC3366" textColor="#FFFFFF" tag="h2" trigger="scroll" />
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 text-[#D6D6D6] px-4 py-1.5 rounded-full font-display font-medium text-[14px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] backdrop-blur-sm self-end sm:self-auto">
+              <div className="w-2 h-2 rounded-full bg-[#00EDFF] shadow-[0_0_8px_#00EDFF] animate-pulse"></div>
+              {filteredCertificates.length} Verified
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-[8px] mb-[32px] pb-4 overflow-x-auto">
+            {certificateTags.map((tag) => (
+              <button key={tag} onClick={() => setActiveTag(tag)}
+                className={`px-[12px] py-[8px] text-[14px] whitespace-nowrap rounded-[100px] border transition-all duration-300 min-h-[42px] ${activeTag === tag
+                  ? "bg-[#CC3366] text-white border-[#CC3366] font-bold"
+                  : "bg-transparent text-[#D6D6D6] border-white/19 hover:bg-white/8 hover:border-white/30"
+                  }`}>{tag}</button>
+            ))}
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[24px]">
+            {filteredCertificates.map((cert) => (
+              <CertificateCard key={cert.id} name={cert.name} issuingOrganization={cert.issuingOrganization}
+                year={cert.year} cover={cert.cover} tags={cert.tag}
+                onClick={() => setActiveCert(cert as Certificate)} />
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <CertificateModal certificate={activeCert} onClose={() => setActiveCert(null)} />
+
+      {/* ══════════ ABOUT ══════════ */}
+      <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
+        id="about" className="py-[96px] px-6 lg:px-10"
+      >
+        <div className="max-w-[1440px] mx-auto">
+          <div className="flex flex-col md:flex-row gap-[40px] items-start">
+            <motion.div variants={fadeUp} className="relative w-[256px] h-[256px] shrink-0 mx-auto md:mx-0">
+              <div className="absolute inset-0 rounded-full border border-[#00EDFF]/30"></div>
+              <Image src="/data/image/proflie/profile1.webp" alt="Narongrit Sornjai" fill className="rounded-full object-cover p-3" />
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="flex-1 max-w-2xl">
+              <BlindsTextReveal text="Narongrit Sornjai" blindsColor="#CC3366" textColor="#FFFFFF" tag="h2" trigger="scroll" />
+              <p className="text-[#CC3366] text-[14px] mb-[24px] mt-[8px]">Geologist turned Developer</p>
+
+              <div className="space-y-[16px] text-[18px] text-[#D6D6D6] font-bold leading-[24px] mb-[32px]">
                 <p>Former prospector applying the precision of geological mapping to complex digital landscapes.</p>
                 <p>Specializing in Full-Stack Development with a focus on building scalable and maintainable web applications.</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] py-[24px] border-t border-white/19 mb-[32px]">
                 <div className="flex items-center gap-3">
-                  <i className="bi bi-envelope text-primary"></i>
-                  <a href="mailto:sonjainarongrit15@gmail.com" className="text-gray-300 hover:text-white transition-colors">Email: [EMAIL_ADDRESS]</a>
+                  <i className="bi bi-envelope text-[#00DEFF]"></i>
+                  <a href="mailto:sonjainarongrit15@gmail.com" className="text-[#D6D6D6] hover:text-[#00DEFF] transition-colors text-[14px]">sonjainarongrit15@gmail.com</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <i className="bi bi-geo-alt text-primary"></i>
-                  <span className="text-gray-400">Bangkok, TH</span>
+                  <i className="bi bi-geo-alt text-[#00DEFF]"></i>
+                  <span className="text-[#D6D6D6] text-[14px]">Bangkok, TH</span>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10 flex flex-wrap gap-5 items-center justify-between relative z-10">
-              <a href="/data/Resume_Narongrit_Sornjai.pdf" target="_blank" rel="noopener noreferrer" download="Resume_Narongrit_Sornjai.pdf" className="w-full sm:w-auto text-center px-8 py-3.5 bg-primary text-background-dark font-bold font-display uppercase tracking-widest rounded-lg shadow-[0_0_15px_rgba(74,222,128,0.4)] hover:shadow-[0_0_25px_rgba(74,222,128,0.6)] hover:bg-white transition-all transform hover:-translate-y-1">
-                DOWNLOAD RESUME
-              </a>
-              <div className="flex gap-4 w-full sm:w-auto justify-center sm:justify-end">
-                <a href="https://www.facebook.com/nar.ngrit.s.njai.cr" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary text-xl hover:bg-secondary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all cursor-pointer"><i className="bi bi-facebook"></i></a>
-                <a href="https://linkedin.com/in/narongrit-sornjai-53289b179" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary text-xl hover:bg-secondary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all cursor-pointer"><i className="bi bi-linkedin"></i></a>
+              <div className="flex flex-wrap gap-[16px] items-center">
+                <ChromaButton
+                  href="/data/Resume_Narongrit_Sornjai.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  label="Download Resume"
+                />
+                <div className="flex gap-[8px]">
+                  <a href="https://www.facebook.com/nar.ngrit.s.njai.cr" target="_blank" rel="noopener noreferrer"
+                    className="w-[44px] h-[44px] rounded-full border border-white/19 flex items-center justify-center text-white hover:text-[#00EDFF] hover:border-[#00EDFF] transition-all duration-300">
+                    <i className="bi bi-facebook"></i>
+                  </a>
+                  <a href="https://linkedin.com/in/narongrit-sornjai-53289b179" target="_blank" rel="noopener noreferrer"
+                    className="w-[44px] h-[44px] rounded-full border border-white/19 flex items-center justify-center text-white hover:text-[#00EDFF] hover:border-[#00EDFF] transition-all duration-300">
+                    <i className="bi bi-linkedin"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </motion.section>
     </main>
